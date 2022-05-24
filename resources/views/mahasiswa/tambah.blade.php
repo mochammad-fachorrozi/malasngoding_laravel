@@ -10,16 +10,22 @@
     
     <h3>FORM PENDAFTARAN MAHASISWA</h3>
 
-    <form action="/mahasiswa/pendaftaran/proses" method="POST">
+    <a href="/mahasiswa"> <- Kembali</a>
+    <br><br>
+
+    <form action="/mahasiswa/tambah/proses" method="POST">
         @csrf
         
         <label for="nama">Nama :</label>
         <input type="text" name="nama" id="nama">
         <br>
-        <label for="alamat">Alamat :</label>
-        <input type="text" name="alamat" id="alamat">
+        <label for="umur">Umur</label>
+        <input type="text" name="umur" id="umur">
         <br>
-        <input type="submit" value="Simpan">
+        <label for="alamat">Alamat :</label>
+        <textarea name="alamat" id="alamat"></textarea>
+        <br>
+        <input type="submit" value="Simpan Data">
     </form>
 </body>
 </html>

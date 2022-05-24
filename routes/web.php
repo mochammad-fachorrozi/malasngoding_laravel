@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MalasngodingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,13 @@ Route::get('/dosen', [DosenController::class, 'index']);
 
 // request data pake url dan form input
 // Route::get('/mahasiswa/{nama}', [MahasiswaController::class, 'index']);
-Route::get('mahasiswa', [MahasiswaController::class, 'index']);
-Route::get('/mahasiswa/pendaftaran', [MahasiswaController::class, 'pendaftaran']);
-Route::post('/mahasiswa/pendaftaran/proses', [MahasiswaController::class, 'proses']);
+Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
+Route::get('/mahasiswa/tambah', [MahasiswaController::class, 'tambah']);
+Route::post('/mahasiswa/tambah/proses', [MahasiswaController::class, 'proses']);
+Route::get('/mahasiswa/edit/{id}', [MahasiswaController::class, 'edit']);
+Route::post('/mahasiswa/update', [MahasiswaController::class, 'update']);
+Route::get('/mahasiswa/hapus/{id}', [MahasiswaController::class, 'hapus']);
+Route::get('/mahasiswa/cari', [MahasiswaController::class, 'cari']);
+
+Route::get('/input', [MalasngodingController::class, 'input']);
+Route::post('/proses', [MalasngodingController::class, 'proses']);
