@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\BidangController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MalasngodingController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\RoziContoller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -69,3 +72,13 @@ Route::get('/guru/kembalikan/{id}', [GuruController::class, 'kembalikan']);
 Route::get('/guru/kembalikan_semua', [GuruController::class, 'kembalikan_semua']);
 Route::get('/guru/hapus_permanen/{id}', [GuruController::class, 'hapus_permanen']);
 Route::get('/guru/hapus_permanen_semua', [GuruController::class, 'hapus_permanen_semua']);
+
+
+// relationship one to one
+Route::get('/pengguna', [PenggunaController::class, 'index']);
+
+// relationship one to many
+Route::get('/bidang', [BidangController::class, 'index']);
+
+// relationship many to many
+Route::get('/rozi', [RoziContoller::class, 'index']);
