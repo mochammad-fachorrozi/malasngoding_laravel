@@ -19,6 +19,7 @@
                 <a href="/pegawai/tambah" class="btn btn-primary">Input Pegawai Baru</a>
                 <br/>
                 <br/>
+                <a href="/pegawai/cetak_pdf" class="btn btn-primary" target="_blank">CETAK PDF</a>
                 <table class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>

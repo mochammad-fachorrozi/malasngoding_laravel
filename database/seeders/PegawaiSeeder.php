@@ -23,7 +23,7 @@ class PegawaiSeeder extends Seeder
         // membuat dummy data sebanyak 10
         for ($x = 1; $x <= 10; $x++) {
             // insert data dummy ke dg faker
-            DB::table('pegawai.index')->insert([
+            DB::table('pegawai')->insert([
                 'nama' => $faker->name,
                 'alamat' => $faker->address
             ]);

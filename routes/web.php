@@ -4,12 +4,17 @@ use App\Http\Controllers\BidangController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\HaiController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MalasngodingController;
+use App\Http\Controllers\NotifController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PenggunaController;
-use App\Http\Controllers\RoziContoller;
+use App\Http\Controllers\RoziController;
+use App\Http\Controllers\TesController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +69,9 @@ Route::get('/pegawai/edit/{id}', [PegawaiController::class, 'edit']);
 Route::post('/pegawai/update/{id}', [PegawaiController::class, 'update']);
 Route::get('/pegawai/hapus/{id}', [PegawaiController::class, 'hapus']);
 
+// dompdf
+Route::get('/pegawai/cetak_pdf', [PegawaiController::class, 'cetak_pdf']);
+
 // soft delete, mirip recycle bin
 Route::get('/guru', [GuruController::class, 'index']);
 Route::get('/guru/hapus/{id}', [GuruController::class, 'hapus']);
@@ -81,4 +89,61 @@ Route::get('/pengguna', [PenggunaController::class, 'index']);
 Route::get('/bidang', [BidangController::class, 'index']);
 
 // relationship many to many
-Route::get('/rozi', [RoziContoller::class, 'index']);
+Route::get('/rozi', [RoziController::class, 'index']);
+
+// enkripsi dan deskripsi, hash
+Route::get('/enkripsi', [RoziController::class, 'enkripsi']);
+Route::get('/data', [RoziController::class, 'data']);
+Route::get('/data/{data_rahasia}', [RoziController::class, 'data_rahasia']);
+
+
+// upload file, hapus file
+Route::get('/upload', [UploadController::class, 'upload']);
+Route::post('/upload/proses', [UploadController::class, 'proses_upload']);
+Route::get('/upload/hapus/{id}', [UploadController::class, 'hapus']);
+
+
+// session laravel
+Route::get('/session/tampil', [TesController::class, 'tampilkanSession']);
+Route::get('/session/buat', [TesController::class, 'buatSession']);
+Route::get('/session/hapus', [TesController::class, 'hapusSession']);
+
+// notifikasi dengan session, menggunakan flash message
+Route::get('/pesan', [NotifController::class, 'index']);
+Route::get('/pesan/sukses', [NotifController::class, 'sukses']);
+Route::get('/pesan/peringatan', [NotifController::class, 'peringatan']);
+Route::get('/pesan/gagal', [NotifController::class, 'gagal']);
+
+
+// error handling
+Route::get('/malasngoding', [MalasngodingController::class, 'index']);
+
+// action url 
+Route::get('/hai/{nama}', [HaiController::class, 'index']);
+Route::get('/hai', [HaiController::class, 'panggil']);
+
+// auth : otomatis membuat login,dashboard,register, dan logout
+// https://www.cafeteria.id/2022/02cara-integrasi-laravel-9-dengan-laravel.html
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// ganti password
+Route::get('/change-password', [App\Http\Controllers\HomeController::class, 'changePassword'])->name('change-password');
+Route::post('/change-password', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('update-password');
+
+
+// yang belum pdf,excel, email, many to many

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pegawai;
+use PDF;
 
 class PegawaiController extends Controller
 {
@@ -80,5 +81,13 @@ class PegawaiController extends Controller
         $pegawai->delete();
         return redirect('/pegawai');
         // atau return redirect()->back();
+    }
+
+    public function cetak_pdf()
+    {
+        $pegawai = Pegawai::all();
+
+        $pdf = PDF::loadview('pegawai_pdf', compact('pegawai'));
+        return $pdf->download('laporan-pegawai-pdf');
     }
 }
